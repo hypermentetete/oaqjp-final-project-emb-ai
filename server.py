@@ -1,3 +1,5 @@
+""" This module process calls to emotion_detector
+"""
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,6 +7,8 @@ app = Flask("Emotion Detector")
 
 @app.route('/emotionDetector')
 def call_detector():
+    """ this function calls emotion_detector funtion
+    """
     text_to_analyze = request.args.get('textToAnalyze')
     r = emotion_detector(text_to_analyze)
     if r['dominant_emotion'] == 'None':
@@ -18,6 +22,8 @@ def call_detector():
 
 @app.route("/")
 def render_index_page():
+    """ This route displays initial index.html page
+    """
     return render_template('index.html')
 
 if __name__ == "__main__":
